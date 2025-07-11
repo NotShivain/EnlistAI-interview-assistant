@@ -17,36 +17,30 @@ from dotenv import load_dotenv
 import streamlit as st
 
 load_dotenv()
-st.toast("✅ Environment variables loaded.")
 
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 api_key = os.getenv("API_KEY")
-st.toast("Groq configuration set")
-st.toast("LangChain configuration set.")
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-st.toast(f"🖥 Torch device set to: {device}")
 
 embedder = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2",
     model_kwargs={"device": device}
 )
-st.toast("🔎 HuggingFace Embeddings initialized.")
 
 db = FAISS.load_local(
     "faiss_index/company_questions",
     embeddings=embedder,
     allow_dangerous_deserialization=True
 )
-st.toast("FAISS index loaded from local storage.")
 
 def get_company_details_from_api(company_name):
     try:
         encoded_company_name = company_name.replace(" ", "%20")
         api_url = f"https://enlistai.onrender.com/company/{encoded_company_name}"
         
-        response = requests.get(api_url, timeout=10)
+        response = requests.get(api_url, timeout=100)
         
         if response.status_code == 200:
             company_data = response.json()
@@ -72,7 +66,6 @@ prompt = PromptTemplate(
     input_variables=["question", "context"],
     template=template
 )
-st.toast("📋 PromptTemplate initialized.")
 
 llm = ChatGroq(
     model="llama-3.1-8b-instant",
@@ -80,9 +73,7 @@ llm = ChatGroq(
     max_tokens=None,
     timeout=None,
     max_retries=2,
-    # other params...
 )
-st.toast("🤖 Ollama LLM initialized.")
 
 rag_chain = RetrievalQA.from_chain_type(
     llm=llm,
@@ -90,21 +81,26 @@ rag_chain = RetrievalQA.from_chain_type(
     chain_type="stuff",
     chain_type_kwargs={"prompt": prompt}
 )
-st.toast("🔗 RetrievalQA chain initialized.")
 
 
 st.title('EnlistAI - Your AI Interview Assistant')
+
 company_name = st.text_input("Search the company you want")
 input_text = st.text_input("Enter your query (e.g., 'What are the interview questions for Google?')")
-if company_name:
-    company_data = get_company_details_from_api(company_name)
-    if company_data:
-        st.write(f"**Company:** {company_data['Company']}")
-        st.write(f"**Rating:** {company_data.get('Rating', 'N/A')}")
-        st.write(f"**Reviews:** {company_data.get('Reviews', 'N/A')}")
-        st.write(f"**Industry & Location:** {company_data.get('Industry & Location', 'N/A')}")
-if input_text:
-    response = rag_chain.run(input_text)
-    
-    st.write(response)
-    st.toast("✅ Query processed by RAG chain.")
+if st.button("Execute"):
+    if company_name:
+        company_data = get_company_details_from_api(company_name)
+        if company_data:
+            st.write(f"**Company:** {company_data['Company']}")
+            st.write(f"**Rating:** {company_data.get('Rating', 'N/A')}")
+            st.write(f"**Reviews:** {company_data.get('Reviews', 'N/A')}")
+            st.write(f"**Industry & Location:** {company_data.get('Industry & Location', 'N/A')}")
+    else:
+        st.toast("Please enter a company name to fetch details.")
+            
+    if input_text:
+        response = rag_chain.run(input_text)
+        
+        st.write(response)
+    else:
+        st.toast("Please enter a query to get answers.")
