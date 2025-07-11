@@ -6,3 +6,10 @@ faiss-cpu
 sentence-transformers
 torch
 transformers
+streamlit
+langchain_community
+langchain_groq
+torch 
+torchvision 
+torchaudio
+--index-url https://download.pytorch.org/whl/cu121
