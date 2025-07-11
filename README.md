@@ -57,6 +57,7 @@ The project uses a sophisticated RAG architecture:
 
 5. **Load FAISS Index**
    you can download it from the following link:
+   ## https://drive.google.com/drive/folders/1cM_DjxGyiH-bbD1esX0vDvZ5UFaAVmYP?usp=sharing
    
 
 ##  Usage
