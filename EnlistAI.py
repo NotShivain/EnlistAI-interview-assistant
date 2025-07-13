@@ -1,7 +1,6 @@
 import pandas as pd
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_ollama import OllamaLLM
 from langchain_groq import ChatGroq
 
 from langchain.docstore.document import Document
@@ -40,7 +39,7 @@ def get_company_details_from_api(company_name):
         encoded_company_name = company_name.replace(" ", "%20")
         api_url = f"https://enlistai.onrender.com/company/{encoded_company_name}"
         
-        response = requests.get(api_url, timeout=100)
+        response = requests.get(api_url)
         
         if response.status_code == 200:
             company_data = response.json()

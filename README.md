@@ -1,8 +1,8 @@
-# EnlistAI - Your AI Interview Assistant 🚀
+# EnlistAI - Your AI Interview Assistant 
 
 An intelligent AI-powered interview preparation assistant that helps job seekers prepare for interviews at top companies. EnlistAI combines company-specific information with curated interview questions to provide personalized interview preparation guidance.
 
-## 🌟 Features
+##  Features
 
 - **Company-Specific Interview Questions**: Access curated interview questions from top companies
 - **Real-time Company Data**: Fetch live company information including ratings, reviews, and industry details
@@ -11,7 +11,7 @@ An intelligent AI-powered interview preparation assistant that helps job seekers
 - **Vector Search**: Efficient similarity search using FAISS for relevant question retrieval
 - **Multi-Company Support**: Covers major tech companies, consulting firms, and financial institutions
 
-## 🏗️ Architecture
+##  Architecture
 
 The project uses a sophisticated RAG architecture:
 
@@ -21,7 +21,7 @@ The project uses a sophisticated RAG architecture:
 4. **LLM Integration**: ChatGroq (Llama-3.1-8b-instant) for intelligent response generation
 5. **API Integration**: Real-time company data fetching from external APIs
 
-## 📋 Prerequisites
+##  Prerequisites
 
 - Python 3.8+
 - CUDA-compatible GPU (optional, for faster processing)
@@ -55,12 +55,12 @@ The project uses a sophisticated RAG architecture:
    LANGCHAIN_API_KEY=your_langchain_api_key_here
    ```
 
-5. **Generate FAISS Index**
-   ```bash
-   python embedder.py
-   ```
+5. **Load FAISS Index**
+   you can download it from the following link:
+   ## https://drive.google.com/drive/folders/1cM_DjxGyiH-bbD1esX0vDvZ5UFaAVmYP?usp=sharing
+   
 
-## 🚀 Usage
+##  Usage
 
 1. **Start the Streamlit application**
    ```bash
@@ -75,7 +75,7 @@ The project uses a sophisticated RAG architecture:
    - Get personalized interview questions and preparation tips
    - View company-specific information and insights
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 EnlistAI/
@@ -98,13 +98,12 @@ EnlistAI/
         └── index.pkl
 ```
 
-## 🔧 Configuration
+##  Configuration
 
 ### Environment Variables
 
 - `GROQ_API_KEY`: Your Groq API key for LLM access
 - `LANGCHAIN_API_KEY`: LangChain API key for tracing (optional)
-- `LANGCHAIN_TRACING_V2`: Enable LangChain tracing (set to "true")
 
 ### Model Configuration
 
@@ -113,7 +112,7 @@ EnlistAI/
 - **Vector Store**: FAISS with cosine similarity
 - **Retrieval**: Top-k=3 similar questions
 
-## 📊 Data Sources
+##  Data Sources
 
 - **Interview Questions**: Curated from multiple sources and companies
 - **Company Information**: Real-time data from company APIs
@@ -123,15 +122,15 @@ EnlistAI/
   - Finance: JPMorgan, Goldman Sachs, Morgan Stanley, etc.
   - Indian IT: TCS, Infosys, Wipro, HCL, etc.
 
-## 🤖 API Endpoints
+## API Endpoints
 
 The project includes several API endpoints:
+## **api repo : https://github.com/ADITYA15062005/EnlistAI**
 
 - `/company/{company_name}`: Fetch company-specific information
-- `/questions/{company_name}`: Get interview questions for a company
-- `/health`: Health check endpoint
+- `/questions/{company_name}`: Get interview questions for a company\
 
-## 🔍 How It Works
+##  How It Works
 
 1. **User Input**: User enters a company name
 2. **Company Detection**: System identifies the company from input
@@ -140,47 +139,5 @@ The project includes several API endpoints:
 5. **AI Response**: Generates comprehensive interview preparation guide
 6. **Display**: Shows formatted results with company info and questions
 
-## 🛡️ Security
 
-- Environment variables for API keys
-- Secure API key handling
-- Rate limiting considerations
-- Input validation and sanitization
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- HuggingFace for the embedding models
-- Groq for the LLM API
-- LangChain for the RAG framework
-- FAISS for efficient vector search
-- Streamlit for the web interface
-
-## 📞 Support
-
-For support, email your-email@example.com or create an issue in the GitHub repository.
-
-## 🔮 Future Enhancements
-
-- [ ] Add more companies and interview questions
-- [ ] Implement user authentication
-- [ ] Add interview simulation features
-- [ ] Mobile app development
-- [ ] Integration with job boards
-- [ ] Advanced analytics and insights
-- [ ] Multi-language support
-
----
-
-Made with ❤️ by [Your Name]
+Made with ❤️ by [Team Hackstreet Boys]
